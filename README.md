@@ -1,1 +1,1 @@
-#Daycloud admin
+#React-redux-ts seed
