@@ -9,8 +9,8 @@ const Routes = () => (
         <div className="wrapper">
             <div className="wrapper-content panel">
                 <Switch>
+                    <Route path='/' component={Home} />
                     <Route component={EnsureLoggedInContainer}>
-                        <Route path='/' component={Home} />
                     </Route>
                 </Switch>
             </div>
