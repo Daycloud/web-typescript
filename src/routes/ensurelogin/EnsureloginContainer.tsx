@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AppState} from "../../../redux/index";
+import {AppState} from "../../redux/index";
 import {RouteComponentProps, withRouter} from "react-router";
 import {connect} from "react-redux";
 

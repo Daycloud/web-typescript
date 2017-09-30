@@ -19,3 +19,7 @@
     transform: rotate(0deg); }
   to {
     transform: rotate(360deg); } }
+
+.home {
+  background: red;
+  width: 200px; }

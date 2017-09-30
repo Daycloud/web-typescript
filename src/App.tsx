@@ -9,7 +9,7 @@ import 'whatwg-fetch';
 
 import Routes from './Routes';
 
-import './App.css';
+import './App.scss';
 
 const store = createStore(
     reducer,

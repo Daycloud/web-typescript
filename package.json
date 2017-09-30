@@ -1,5 +1,5 @@
 {
-  "name": "web-admin",
+  "name": "daycloud-web",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "@types/react-redux": "^4.4.46",
     "@types/react-router-dom": "4.0.6",
     "dotenv": "4.0.0",
+    "node-sass-chokidar": "0.0.3",
     "react": "15.6.1",
     "react-dom": "15.5.1",
     "react-redux": "^5.0.5",
@@ -23,9 +24,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "start-js": "react-scripts-ts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   }
 }
