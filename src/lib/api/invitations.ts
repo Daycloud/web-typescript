@@ -1,13 +1,13 @@
 
 import { get, post } from './util';
-import { PublicUser } from '../api/dto/User';
-import { PublicCloud, Cloud } from '../api/dto/Cloud';
+import { PublicUserDAO } from '../api/dto/UserDAO';
+import { PublicCloudDAO, CloudDAO } from '../api/dto/CloudDAO';
 
 const invitationPath = 'invitations';
 
 export interface IFetchInvitationResponse {
-    user: PublicUser,
-    cloud: PublicCloud,
+    user: PublicUserDAO,
+    cloud: PublicCloudDAO,
 }
 export async function fetchInvitationRequest(key: string): Promise<IFetchInvitationResponse> {
     const response: IFetchInvitationResponse = await get(`${invitationPath}?key=${key}`);
@@ -15,7 +15,7 @@ export async function fetchInvitationRequest(key: string): Promise<IFetchInvitat
 }
 
 export interface IJoinByKeyResponse {
-    cloud: Cloud
+    cloud: CloudDAO
 }
 export async function joinByKeyRequest(key: string): Promise<IJoinByKeyResponse> {
     const body = {

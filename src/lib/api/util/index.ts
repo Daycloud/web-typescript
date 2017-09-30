@@ -1,5 +1,5 @@
 
-const api_base_url = 'http://localhost:8080/';
+const api_base_url = 'http://localhost:8080/v2.0';
 
 function isSuccessResponse(status: number): boolean {
     return status > 199 && status < 300;
@@ -24,7 +24,7 @@ export async function get(relativePath: string, options?: RequestInit): Promise<
 export async function post(relativePath: string, body?: any, options?: RequestInit): Promise<any> {
     const response = await fetch(`${api_base_url}/${relativePath}`, Object.assign(
         {
-            body: body,
+            body: JSON.stringify(body),
             headers: {
                 'Content-Type':'application/json'
             },

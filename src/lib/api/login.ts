@@ -1,12 +1,14 @@
 
 import { post } from './util';
-import { User } from './dto/User';
+import { UserDAO } from './dto/UserDAO';
+import { TokensDAO } from './dto/TokenDAO';
 
 const facebookLoginPath = 'facebooklogin';
 const localLoginPath = 'login';
 
-interface IFacebookLoginResponseBody {
-    user: User
+export interface IFacebookLoginResponseBody {
+    user: UserDAO;
+    tokens: TokensDAO
 }
 export async function facebookLoginRequest(fbToken: string): Promise<IFacebookLoginResponseBody> {
     const body = {
@@ -16,8 +18,9 @@ export async function facebookLoginRequest(fbToken: string): Promise<IFacebookLo
     return response;
 }
 
-interface ILoginResponseBody {
-    user: User
+export interface ILoginResponseBody {
+    user: UserDAO
+    tokens: TokensDAO
 }
 export async function localLoginRequest(username: string, password: string): Promise<ILoginResponseBody> {
     const body = {

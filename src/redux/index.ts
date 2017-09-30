@@ -1,13 +1,13 @@
 
 import { combineReducers } from 'redux';
-import login, {LoginState} from "./login/reducer";
+import {LoginState, LoginReducer} from "./login/duck";
 
 export interface AppState {
     login: LoginState
 }
 
 const reducer = combineReducers<AppState>({
-    login
+    login: LoginReducer
 });
 
 export default reducer;
