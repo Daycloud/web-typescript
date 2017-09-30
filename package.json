@@ -10,6 +10,7 @@
     "@types/react-dom": "15.5.1",
     "@types/react-redux": "^4.4.46",
     "@types/react-router-dom": "4.0.6",
+    "@types/whatwg-fetch": "0.0.33",
     "react": "15.6.1",
     "react-dom": "15.5.1",
     "react-redux": "^5.0.5",
@@ -17,7 +18,8 @@
     "react-scripts-ts": "2.3.1",
     "react-test-renderer": "^15.6.1",
     "redux-thunk": "^2.2.0",
-    "typescript": "^2.4.1"
+    "typescript": "^2.4.1",
+    "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {},
   "scripts": {

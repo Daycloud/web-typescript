@@ -5,6 +5,8 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 
+import 'whatwg-fetch';
+
 import Routes from './Routes';
 
 import './App.css';
