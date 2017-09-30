@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Switch, Route} from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
+import EnsureLoggedInContainer from './components/routes/ensurelogin/EnsureloginContainer';
+import Home from './components/routes/home/Home';
 
 const Routes = () => (
     <BrowserRouter basename="/">
@@ -8,7 +10,7 @@ const Routes = () => (
             <div className="wrapper-content panel">
                 <Switch>
                     <Route component={EnsureLoggedInContainer}>
-                        <Route path='/' component={Home}/>
+                        <Route path='/' component={Home} />
                     </Route>
                 </Switch>
             </div>

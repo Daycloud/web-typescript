@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {AppState} from "../../../redux/index";
-import {RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps} from "react-router";
 import {connect} from "react-redux";
 
 interface OwnProps {
@@ -25,11 +25,7 @@ class EnsureloginContainer extends React.Component<Props, {}> {
     }
 
     render() {
-        if (!this.props.isLoggedIn) {
-            return this.props.children
-        } else {
-            return null
-        }
+        return <div>{ this.props.children }</div>;
     }
 };
 
@@ -43,4 +39,4 @@ const connectedContainer = connect<ReduxProps, {}, OwnProps>(
     mapStateToProps
 )(EnsureloginContainer);
 
-export default withRouter<OwnProps>(connectedContainer);
+export default connectedContainer;//withRouter<OwnProps>(connectedContainer);

@@ -1,5 +1,5 @@
 
-var api_base_url = 'http://localhost:8080/v2.0';
+const api_base_url = 'http://localhost:8080/';
 
 function isSuccessResponse(status: number): boolean {
     return status > 199 && status < 300;
