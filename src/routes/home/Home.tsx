@@ -2,6 +2,8 @@ import * as React from 'react';
 import {AppState} from "../../redux/index";
 import {connect} from "react-redux";
 
+import './home.css';
+
 interface OwnProps {
 
 }
@@ -17,7 +19,7 @@ class Home extends React.Component<Props, {}> {
     }
 
     render() {
-        return <div></div>
+        return <div className="home">This is home</div>
     }
 };
 
