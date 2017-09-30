@@ -4,7 +4,7 @@ const api_base_url = 'http://localhost:8080/';
 function isSuccessResponse(status: number): boolean {
     return status > 199 && status < 300;
 }
-export async function get(relativePath: string, options: RequestInit): Promise<any> {
+export async function get(relativePath: string, options?: RequestInit): Promise<any> {
     const response = await fetch(`${api_base_url}/${relativePath}`, Object.assign(
         {
             headers: {
@@ -21,7 +21,7 @@ export async function get(relativePath: string, options: RequestInit): Promise<a
     return await response.json();
 }
 
-export async function post(relativePath: string, body: any, options: RequestInit): Promise<any> {
+export async function post(relativePath: string, body?: any, options?: RequestInit): Promise<any> {
     const response = await fetch(`${api_base_url}/${relativePath}`, Object.assign(
         {
             body: body,
@@ -39,7 +39,7 @@ export async function post(relativePath: string, body: any, options: RequestInit
     return await response.json();
 }
 
-export async function put(relativePath: string, body: any, options: RequestInit): Promise<any> {
+export async function put(relativePath: string, body?: any, options?: RequestInit): Promise<any> {
     const response = await fetch(`${api_base_url}/${relativePath}`, Object.assign(
         {
             body: body,
