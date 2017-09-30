@@ -4,8 +4,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-require('./lib/api/util');
-
 ReactDOM.render(
   <App />,
   document.getElementById('root') as HTMLElement
