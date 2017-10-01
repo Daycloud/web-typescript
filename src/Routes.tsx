@@ -5,18 +5,19 @@ import { BrowserRouter } from 'react-router-dom';
 import EnsureLoggedInContainer  from './routes/ensurelogin/EnsureloginContainer';
 import Home from './routes/home/Home';
 import LoginContainer from './routes/login/LoginContainer';
+import LoginRedirector from './routes/ensurelogin/LoginRedirector';
 
-const Routes = () => (
+const Routes: React.StatelessComponent = () => (
     <BrowserRouter basename="/">
         <div className="wrapper">
-            <div className="wrapper-content panel">
+            <LoginRedirector>
                 <Switch>
                     <Route path="/login" exact={true} component={LoginContainer}/>
                     <Route component={EnsureLoggedInContainer}>
                         <Route path="/" exact={true} component={Home} />
                     </Route>
                 </Switch>
-            </div>
+            </LoginRedirector>
         </div>
     </BrowserRouter>
 );

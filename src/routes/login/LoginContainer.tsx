@@ -20,7 +20,7 @@ type Props = IOwnProps & IReduxProps & IActionProps;
 class Login extends React.Component<Props, {}> {
 
     componentDidMount() {
-        this.props.login('', '');
+        this.props.login('iversen332@gmail.com', 'petter');
     }
 
     render() {
@@ -32,6 +32,7 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
     };
 };
+
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
     return {
         login: doLogin(dispatch),
