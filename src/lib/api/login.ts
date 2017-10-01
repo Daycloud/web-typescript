@@ -1,10 +1,11 @@
 
-import { post } from './util';
+import { post, get, addAuthenticationHeader } from './util';
 import { UserDAO } from './dto/UserDAO';
 import { TokensDAO } from './dto/TokenDAO';
 
 const facebookLoginPath = 'facebooklogin';
 const localLoginPath = 'login';
+const refreshTokenPath = 'login/refresh';
 
 export interface IFacebookLoginResponseBody {
     user: UserDAO;
@@ -28,5 +29,14 @@ export async function localLoginRequest(username: string, password: string): Pro
         password: password,
     };
     const response: ILoginResponseBody = await post(localLoginPath, body);
+    return response;
+}
+
+export interface IRefreshTokenResponseBody {
+    user: UserDAO;
+    tokens: TokensDAO;
+}
+export async function refreshTokenRequest(refreshToken: string): Promise<IRefreshTokenResponseBody> {
+    const response: IRefreshTokenResponseBody = await get(refreshTokenPath, addAuthenticationHeader({}, refreshToken));
     return response;
 }

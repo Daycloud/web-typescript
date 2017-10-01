@@ -1,5 +1,6 @@
-import { ILoginResponseBody, localLoginRequest, IFacebookLoginResponseBody, facebookLoginRequest } from './../../lib/api/login';
+import { ILoginResponseBody, localLoginRequest, IFacebookLoginResponseBody, facebookLoginRequest, refreshTokenRequest, IRefreshTokenResponseBody } from './../../lib/api/login';
 import { Dispatch } from 'redux';
+import tokenManager from '../../lib/api/TokenManager';
 
 enum TypeKeys {
     LOADING = 'LOGIN_ACTION_LOADING',
@@ -54,12 +55,29 @@ export function LoginReducer(state: LoginState = initialState, action: ActionTyp
     }
 }
 
+export function doRefreshTokens(dispatch: Dispatch<any>) {
+    return async (refreshToken: string) => {
+        dispatch(setLoadingActionBuilder());
+        let response: IRefreshTokenResponseBody
+        try {
+            response = await refreshTokenRequest(refreshToken);
+            tokenManager.saveTokens(response.tokens);
+        }
+        catch(e) {
+            dispatch(setErrorActionBuilder(e));
+            return;
+        }
+        console.log(response);
+        dispatch(setModelActionBuilder());
+    }
+}
 export function doLogin(dispatch: Dispatch<any>) {
     return async (username: string, password: string) => {
         dispatch(setLoadingActionBuilder());
         let response: ILoginResponseBody;
         try {
             response = await localLoginRequest(username, password);
+            tokenManager.saveTokens(response.tokens);
         }
         catch (e) {
             dispatch(setErrorActionBuilder(e));
@@ -74,6 +92,7 @@ export function doFacebookLogin(dispatch: Dispatch<any>) {
         let response: IFacebookLoginResponseBody;
         try {
             response = await facebookLoginRequest(fbToken);
+            tokenManager.saveTokens(response.tokens);
         }
         catch (e) {
             dispatch(setErrorActionBuilder(e));
