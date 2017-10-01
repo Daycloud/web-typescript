@@ -1,7 +1,8 @@
 
-import { get, post } from './util';
+import { get, post, addAuthenticationHeader } from './util';
 import { PublicUserDAO } from '../api/dto/UserDAO';
 import { PublicCloudDAO, CloudDAO } from '../api/dto/CloudDAO';
+import tokenManager from './TokenManager';
 
 const invitationPath = 'invitations';
 
@@ -21,6 +22,6 @@ export async function joinByKeyRequest(key: string): Promise<IJoinByKeyResponse>
     const body = {
         key: key
     }
-    const response: IJoinByKeyResponse = await post(invitationPath, body);
+    const response: IJoinByKeyResponse = await post(invitationPath, body, addAuthenticationHeader({}, tokenManager.refreshToken!));
     return response;
 }

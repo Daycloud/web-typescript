@@ -1,6 +1,7 @@
 import { ILoginResponseBody, localLoginRequest, IFacebookLoginResponseBody, facebookLoginRequest, refreshTokenRequest, IRefreshTokenResponseBody } from './../../lib/api/login';
 import { Dispatch } from 'redux';
 import tokenManager from '../../lib/api/TokenManager';
+import { setModelActionBuilder as setUserModelActonBuilder } from '../user/duck';
 
 enum TypeKeys {
     LOADING = 'LOGIN_ACTION_LOADING',
@@ -67,8 +68,8 @@ export function doRefreshTokens(dispatch: Dispatch<any>) {
             dispatch(setErrorActionBuilder(e));
             return;
         }
-        console.log(response);
         dispatch(setModelActionBuilder());
+        dispatch(setUserModelActonBuilder(response.user));
     }
 }
 export function doLogin(dispatch: Dispatch<any>) {
@@ -84,6 +85,7 @@ export function doLogin(dispatch: Dispatch<any>) {
             return;
         }
         dispatch(setModelActionBuilder());
+        dispatch(setUserModelActonBuilder(response.user));
     }
 }
 export function doFacebookLogin(dispatch: Dispatch<any>) {
@@ -99,5 +101,6 @@ export function doFacebookLogin(dispatch: Dispatch<any>) {
             return;
         }
         dispatch(setModelActionBuilder());
+        dispatch(setUserModelActonBuilder(response.user));
     }
 }
