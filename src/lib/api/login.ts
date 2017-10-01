@@ -1,4 +1,4 @@
-import { post, get, addAuthenticationHeader } from './util';
+import { post, get, addAuthenticationHeader, IResponse } from './util';
 import { UserDAO } from './dto/UserDAO';
 import { TokensDAO } from './dto/TokenDAO';
 
@@ -10,7 +10,7 @@ export interface IFacebookLoginResponseBody {
     user: UserDAO;
     tokens: TokensDAO;
 }
-export async function facebookLoginRequest(fbToken: string): Promise<IFacebookLoginResponseBody> {
+export async function facebookLoginRequest(fbToken: string): Promise<IResponse<IFacebookLoginResponseBody>> {
     const body = {
         fbToken: fbToken,
     };
@@ -21,7 +21,7 @@ export interface ILoginResponseBody {
     user: UserDAO;
     tokens: TokensDAO;
 }
-export async function localLoginRequest(username: string, password: string): Promise<ILoginResponseBody> {
+export async function localLoginRequest(username: string, password: string): Promise<IResponse<ILoginResponseBody>> {
     const body = {
         email: username,
         password: password,
@@ -33,6 +33,6 @@ export interface IRefreshTokenResponseBody {
     user: UserDAO;
     tokens: TokensDAO;
 }
-export async function refreshTokenRequest(refreshToken: string): Promise<IRefreshTokenResponseBody> {
+export async function refreshTokenRequest(refreshToken: string): Promise<IResponse<IRefreshTokenResponseBody>> {
     return await get<ILoginResponseBody>(refreshTokenPath, addAuthenticationHeader({}, refreshToken));
 }
