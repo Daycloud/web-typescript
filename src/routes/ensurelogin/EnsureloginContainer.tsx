@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { IAppState } from '../../redux/index';
 import { RouteComponentProps, withRouter } from 'react-router';
-import {connect, Dispatch} from 'react-redux';
-import {doSetPostLoginRedirectLink} from "../../redux/login/duck";
+import { connect, Dispatch } from 'react-redux';
+import { doSetPostLoginRedirectLink } from '../../redux/login/duck';
 
 interface IOwnProps {
 
