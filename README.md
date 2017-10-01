@@ -1,1 +1,1 @@
-#React-redux-ts seed
+# Daycloud web app
