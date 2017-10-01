@@ -1,5 +1,5 @@
 
-import { get, post, addAuthenticationHeader } from './util';
+import { get, post, addAuthenticationHeader, IResponse } from './util';
 import { PublicUserDAO } from './dto/UserDAO';
 import { PublicCloudDAO, CloudDAO } from './dto/CloudDAO';
 import tokenManager from './TokenManager';
@@ -10,14 +10,14 @@ export interface IFetchInvitationResponse {
     user: PublicUserDAO;
     cloud: PublicCloudDAO;
 }
-export async function fetchInvitationRequest(key: string): Promise<IFetchInvitationResponse> {
+export async function fetchInvitationRequest(key: string): Promise<IResponse<IFetchInvitationResponse>> {
     return await get<IFetchInvitationResponse>(`${invitationPath}?key=${key}`);
 }
 
 export interface IJoinByKeyResponse {
     cloud: CloudDAO;
 }
-export async function joinByKeyRequest(key: string): Promise<IJoinByKeyResponse> {
+export async function joinByKeyRequest(key: string): Promise<IResponse<IJoinByKeyResponse>> {
     const body = {
         key: key
     };
