@@ -3,26 +3,26 @@ import { UserDAO } from './../../lib/api/dto/UserDAO';
 enum TypeKeys {
     SET_MODEL = 'LOGIN_ACTION_SET_MODEL',
     DEFAULT = '__DEFAULT_ACTION__'
-};
+}
 
-interface ModelAction {
+interface IModelAction {
     type: TypeKeys.SET_MODEL;
     user: UserDAO;
 }
 type ActionTypes =
-    | ModelAction
+    | IModelAction;
 
-export function setModelActionBuilder(user: UserDAO): ModelAction {
+export function setModelActionBuilder(user: UserDAO): IModelAction {
     return { type: TypeKeys.SET_MODEL, user: user };
 }
 
-export interface UserState {
+export interface IUserState {
     user?: UserDAO;
 }
-const initialState: UserState = {
+const initialState: IUserState = {
     user: undefined
-}
-export function UserReducer(state: UserState = initialState, action: ActionTypes): UserState {
+};
+export function UserReducer(state: IUserState = initialState, action: ActionTypes): IUserState {
     switch (action.type) {
         case TypeKeys.SET_MODEL:
             return {...state, user: action.user};

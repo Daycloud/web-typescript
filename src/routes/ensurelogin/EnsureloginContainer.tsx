@@ -1,42 +1,42 @@
 import * as React from 'react';
-import {AppState} from "../../redux/index";
-import {RouteComponentProps, withRouter} from "react-router";
-import {connect} from "react-redux";
+import { IAppState } from '../../redux/index';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
-interface OwnProps {
+interface IOwnProps {
 
 }
 
-interface ReduxProps {
-    isLoggedIn: boolean
+interface IReduxProps {
+    isLoggedIn: boolean;
 }
 
-interface RouterProps {
+interface IRouterProps {
 }
 
-type Props = OwnProps & ReduxProps & RouteComponentProps<RouterProps>;
+type Props = IOwnProps & IReduxProps & RouteComponentProps<IRouterProps>;
 
 class EnsureloginContainer extends React.Component<Props, {}> {
 
     componentDidMount() {
         if (!this.props.isLoggedIn) {
-            console.log('nono');
+            alert('Not logged in');
         }
     }
 
     render() {
-        return <div>{ this.props.children }</div>;
+        return <div>{this.props.children}</div>;
     }
-};
+}
 
-const mapStateToProps = (appState: AppState, props: Props): ReduxProps => {
+const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
         isLoggedIn: appState.login.isLoggedIn
     };
 };
 
-const connectedContainer = connect<ReduxProps, {}, Props>(
+const connectedContainer = connect<IReduxProps, {}, Props>(
     mapStateToProps
 )(EnsureloginContainer);
 
-export default withRouter<OwnProps>(connectedContainer);
+export default withRouter<IOwnProps>(connectedContainer);
