@@ -16,12 +16,17 @@ interface IRouterProps {
 
 type Props = IOwnProps & IReduxProps & RouteComponentProps<IRouterProps>;
 
-class EnsureloginContainer extends React.Component<Props, {}> {
+class LoginRedirector extends React.Component<Props, {}> {
 
-    componentDidMount() {
+    componentDidUpdate(prevProps: Props) {
 
-        if (!this.props.isLoggedIn) {
-            this.props.history.push('/login');
+        const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
+        const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
+
+        if (isLoggingIn) {
+            this.props.history.replace('/');
+        } else if (isLoggingOut) {
+            // do any kind of cleanup or post-logout redirection here
         }
     }
 
@@ -38,6 +43,6 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
 
 const connectedContainer = connect<IReduxProps, {}, Props>(
     mapStateToProps
-)(EnsureloginContainer);
+)(LoginRedirector);
 
 export default withRouter<IOwnProps>(connectedContainer);

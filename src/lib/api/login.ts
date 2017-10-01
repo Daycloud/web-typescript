@@ -23,7 +23,7 @@ export interface ILoginResponseBody {
 }
 export async function localLoginRequest(username: string, password: string): Promise<ILoginResponseBody> {
     const body = {
-        username: username,
+        email: username,
         password: password,
     };
     return await post<ILoginResponseBody>(localLoginPath, body);

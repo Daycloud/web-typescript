@@ -20,7 +20,7 @@ type Props = IOwnProps & IReduxProps & IActionProps;
 class Login extends React.Component<Props, {}> {
 
     componentDidMount() {
-        this.props.login('', '');
+        this.props.login('email', 'password');
     }
 
     render() {
