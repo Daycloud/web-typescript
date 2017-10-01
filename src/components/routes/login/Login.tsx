@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {AppState} from "../../../redux/index";
 import {connect, Dispatch} from "react-redux";
-import { doLogin } from '../../../redux/login/duck';
+import { doLogin, doFacebookLogin } from '../../../redux/login/duck';
 interface OwnProps {
 
 }
@@ -10,7 +10,8 @@ interface ReduxProps {
 }
 
 interface ActionProps {
-    login: (username: string, password: string) => void
+    login: (username: string, password: string) => void;
+    facebookLogin: (fbToken: string) => void;
 }
 
 type Props = OwnProps & ReduxProps & ActionProps;
@@ -31,7 +32,8 @@ const mapStateToProps = (appState: AppState, props: Props): ReduxProps => {
 };
 const mapDispatchToProps = (dispatch: Dispatch<AppState>): ActionProps => {
     return {
-        login: doLogin(dispatch)
+        login: doLogin(dispatch),
+        facebookLogin: doFacebookLogin(dispatch),
     }
 };
 
