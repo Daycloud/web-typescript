@@ -1,34 +1,29 @@
 import * as React from 'react';
-import {AppState} from "../../redux/index";
-import {connect} from "react-redux";
+import { IAppState } from '../../redux/index';
+import { connect } from 'react-redux';
 
 import './home.css';
 
-interface OwnProps {
+interface IOwnProps {
 
 }
 
-interface ReduxProps {
+interface IReduxProps {
 
 }
 
-type Props = OwnProps & ReduxProps;
-class Home extends React.Component<Props, {}> {
+type Props = IOwnProps & IReduxProps;
 
-    componentDidMount() {
-    }
-
-    render() {
-        return <div className="home">This is home</div>
-    }
+const Home = (props: Props) => {
+        return <div className="home">This is home</div>;
 };
 
-const mapStateToProps = (appState: AppState, props: Props): ReduxProps => {
+const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
     };
 };
 
-const home = connect<ReduxProps, {}, OwnProps>(
+const home = connect<IReduxProps, {}, IOwnProps>(
     mapStateToProps
 )(Home);
 

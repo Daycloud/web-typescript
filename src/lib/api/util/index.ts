@@ -1,5 +1,4 @@
-
-const api_base_url = 'http://localhost:8080/v2.0';
+const apiBaseUrl = 'http://localhost:8080/v2.0';
 
 interface IResponse<T> {
     status: number;
@@ -11,22 +10,22 @@ function isSuccessResponse(status: number): boolean {
 }
 
 export function addAuthenticationHeader(options: RequestInit, token: string): RequestInit {
-    return {...options, headers: {...options.headers, 'Authorization':token}};
+    return {...options, headers: {...options.headers, 'Authorization': token}};
 }
-export async function get(relativePath: string, options?: RequestInit): Promise<any> {
+export async function get<T>(relativePath: string, options?: RequestInit): Promise<T> {
     const finalOptions: RequestInit = Object.assign(
         {
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             method: 'GET'
-        }, options
+        },
+        options
     );
     if (options && options.headers) {
-        finalOptions.headers = Object.assign({ 'Content-Type':'application/json' }, options.headers);
+        finalOptions.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers);
     }
-    console.log(finalOptions);
-    const response = await fetch(`${api_base_url}/${relativePath}`, finalOptions);
+    const response = await fetch(`${apiBaseUrl}/${relativePath}`, finalOptions);
 
     if (!isSuccessResponse(response.status)) {
         throw new Error(String(response.status));
@@ -35,20 +34,21 @@ export async function get(relativePath: string, options?: RequestInit): Promise<
     return await response.json();
 }
 
-export async function post(relativePath: string, body?: any, options?: RequestInit): Promise<any> {
+export async function post<T>(relativePath: string, body?: {}, options?: RequestInit): Promise<T> {
     const finalOptions: RequestInit = Object.assign(
         {
             body: JSON.stringify(body),
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             method: 'POST'
-        }, options
+        },
+        options
     );
     if (options && options.headers) {
-        finalOptions.headers = Object.assign({ 'Content-Type':'application/json' }, options.headers);
+        finalOptions.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers);
     }
-    const response = await fetch(`${api_base_url}/${relativePath}`, finalOptions);
+    const response = await fetch(`${apiBaseUrl}/${relativePath}`, finalOptions);
 
     if (!isSuccessResponse(response.status)) {
         throw new Error(String(response.status));
@@ -57,15 +57,16 @@ export async function post(relativePath: string, body?: any, options?: RequestIn
     return await response.json();
 }
 
-export async function put(relativePath: string, body?: any, options?: RequestInit): Promise<any> {
-    const response = await fetch(`${api_base_url}/${relativePath}`, Object.assign(
+export async function put(relativePath: string, body?: {}, options?: RequestInit): Promise<{}> {
+    const response = await fetch(`${apiBaseUrl}/${relativePath}`, Object.assign(
         {
             body: body,
             headers: {
                 'Content-Type': 'application/json'
             },
             method: 'PUT'
-        }, options)
+        },
+        options)
     );
 
     if (!isSuccessResponse(response.status)) {

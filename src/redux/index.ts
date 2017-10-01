@@ -1,14 +1,14 @@
-
 import { combineReducers } from 'redux';
-import {LoginState, LoginReducer} from "./login/duck";
-import {UserState, UserReducer} from './user/duck';
 
-export interface AppState {
-    login: LoginState;
-    user: UserState;
+import { ILoginState, LoginReducer } from './login/duck';
+import { IUserState, UserReducer } from './user/duck';
+
+export interface IAppState {
+    login: ILoginState;
+    user: IUserState;
 }
 
-const reducer = combineReducers<AppState>({
+const reducer = combineReducers<IAppState>({
     login: LoginReducer,
     user: UserReducer,
 });

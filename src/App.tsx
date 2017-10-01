@@ -1,9 +1,9 @@
 import * as React from 'react';
 import reducer from './redux';
-import {applyMiddleware} from "redux";
-import {createStore} from "redux";
-import {Provider} from "react-redux";
-import thunk from "redux-thunk";
+import { applyMiddleware } from 'redux';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import 'whatwg-fetch';
 
