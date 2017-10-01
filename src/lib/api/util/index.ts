@@ -53,7 +53,7 @@ export async function post<T>(relativePath: string, body: object = {}, options?:
     return doRequest(`${apiBaseUrl}/${relativePath}`, finalOptions);
 }
 
-export async function put<T>(relativePath: string,body: object = {}, options?: RequestInit): Promise<IResponse<T>> {
+export async function put<T>(relativePath: string, body: object = {}, options?: RequestInit): Promise<IResponse<T>> {
     const finalOptions: RequestInit = Object.assign(
         {
             body: JSON.stringify(body),
