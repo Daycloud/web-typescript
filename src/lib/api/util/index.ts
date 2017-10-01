@@ -1,8 +1,13 @@
 
 const api_base_url = 'http://localhost:8080/v2.0';
 
+interface IResponse<T> {
+    status: number;
+    data?: T;
+}
+
 function isSuccessResponse(status: number): boolean {
-    return status > 199 && status < 300;
+    return (status > 199 && status < 300) || status === 304;
 }
 
 export function addAuthenticationHeader(options: RequestInit, token: string): RequestInit {
