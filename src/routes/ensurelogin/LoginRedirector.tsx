@@ -9,6 +9,7 @@ interface IOwnProps {
 
 interface IReduxProps {
     isLoggedIn: boolean;
+    redirectUrl?: string;
 }
 
 interface IRouterProps {
@@ -23,8 +24,8 @@ class LoginRedirector extends React.Component<Props, {}> {
         const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
         const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
 
-        if (isLoggingIn) {
-            this.props.history.replace('/');
+        if (isLoggingIn && this.props.redirectUrl) {
+            this.props.history.replace(this.props.redirectUrl);
         } else if (isLoggingOut) {
             // do any kind of cleanup or post-logout redirection here
         }
@@ -37,7 +38,8 @@ class LoginRedirector extends React.Component<Props, {}> {
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
-        isLoggedIn: appState.login.isLoggedIn
+        isLoggedIn: appState.login.isLoggedIn,
+        redirectUrl: appState.login.redirectUrl
     };
 };
 

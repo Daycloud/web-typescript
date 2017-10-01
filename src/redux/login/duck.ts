@@ -71,7 +71,7 @@ export function LoginReducer(state: ILoginState = initialState, action: ActionTy
         case TypeKeys.LOGGED_IN:
             return { ...state, requestInProgress: false, isLoggedIn: true };
         case TypeKeys.SET_REDIRECT_URL:
-            return { ...state, redirectUrl: action.url }
+            return { ...state, redirectUrl: action.url };
         case TypeKeys.ERROR:
             return { ...state, requestInProgress: false, isLoggedIn: false };
         default:
