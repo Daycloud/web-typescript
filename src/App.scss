@@ -1,7 +1,17 @@
 $primary-color: red;
+$background-color: #eeeeee;
 
 .center-horizontal {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+body {
+  background: $background-color;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
 }
