@@ -2,3 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+body {
+  background: #eeeeee; }
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box; }
