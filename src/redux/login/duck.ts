@@ -83,31 +83,21 @@ export function LoginReducer(state: ILoginState = initialState, action: ActionTy
 export function doRefreshTokens(dispatch: Dispatch<IAppState>) {
     return async (refreshToken: string) => {
         dispatch(setLoadingActionBuilder());
-        let response: IResponse<IRefreshTokenResponseBody>;
-        try {
-            response = await refreshTokenRequest(refreshToken);
-        } catch (e) {
-            dispatch(setErrorActionBuilder(0));
-            return;
-        }
+        let response: IResponse<IRefreshTokenResponseBody> = await refreshTokenRequest(refreshToken);
 
         if (isSuccessResponse(response.status)) {
             tokenManager.saveTokens(response.data!.tokens);
             dispatch(setUserModelActonBuilder(response.data!.user));
             dispatch(setLoggedInActionBuilder());
+        } else {
+            dispatch(setErrorActionBuilder(response.status));
         }
     };
 }
 export function doLogin(dispatch: Dispatch<IAppState>) {
     return async (username: string, password: string) => {
         dispatch(setLoadingActionBuilder());
-        let response: IResponse<ILoginResponseBody>;
-        try {
-            response = await localLoginRequest(username, password);
-        } catch (e) {
-            dispatch(setErrorActionBuilder(0));
-            return;
-        }
+        let response: IResponse<ILoginResponseBody> = await localLoginRequest(username, password);
 
         if (isSuccessResponse(response.status)) {
             tokenManager.saveTokens(response.data!.tokens);
@@ -121,18 +111,14 @@ export function doLogin(dispatch: Dispatch<IAppState>) {
 export function doFacebookLogin(dispatch: Dispatch<IAppState>) {
     return async (fbToken: string) => {
         dispatch(setLoadingActionBuilder());
-        let response: IResponse<IFacebookLoginResponseBody>;
-        try {
-            response = await facebookLoginRequest(fbToken);
-        } catch (e) {
-            dispatch(setErrorActionBuilder(0));
-            return;
-        }
+        let response: IResponse<IFacebookLoginResponseBody> = await facebookLoginRequest(fbToken);
         
         if (isSuccessResponse(response.status)) {
             tokenManager.saveTokens(response.data!.tokens);
             dispatch(setUserModelActonBuilder(response.data!.user));
             dispatch(setLoggedInActionBuilder());
+        } else {
+            dispatch(setErrorActionBuilder(response.status));
         }
     };
 }

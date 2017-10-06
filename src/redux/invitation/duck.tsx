@@ -65,13 +65,7 @@ export function InvitationReducer(state: IInvitationState = initialState, action
 export function doFetchInvitation(dispatch: Dispatch<IAppState>) {
     return async (key: string) => {
         dispatch(setLoadingActionBuilder());
-        let response: IResponse<IFetchInvitationResponse>;
-        try {
-            response = await fetchInvitationRequest(key);
-        } catch (e) {
-            dispatch(setErrorActionBuilder(404));
-            return;
-        }
+        let response: IResponse<IFetchInvitationResponse> = await fetchInvitationRequest(key);
 
         if (isSuccessResponse(response.status)) {
             dispatch(setModelActionBuilder(response.data!.invitation));

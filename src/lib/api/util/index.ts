@@ -8,16 +8,22 @@ export interface IResponse<T> {
 export function isSuccessResponse(status: number): boolean {
     return (status > 199 && status < 300) || status === 304;
 }
-async function doRequest (path: string, finalOptions: RequestInit) {
-    const response = await fetch(path, finalOptions);
-
-    return {
-        status: response.status,
-        data: (isSuccessResponse(response.status)) ? await response.json() : undefined,
-    };
+async function doRequest<T>(path: string, finalOptions: RequestInit): Promise<IResponse<T>> {
+    try {
+        const response = await fetch(path, finalOptions);
+        return {
+            status: response.status,
+            data: (isSuccessResponse(response.status)) ? await response.json() : undefined,
+        };
+    } catch (e) {
+        return {
+            status: 0,
+            data: undefined
+        };
+    }
 }
 export function addAuthenticationHeader(options: RequestInit, token: string): RequestInit {
-    return {...options, headers: {...options.headers, 'Authorization': token}};
+    return { ...options, headers: { ...options.headers, 'Authorization': token } };
 }
 export async function get<T>(relativePath: string, options?: RequestInit): Promise<IResponse<T>> {
     const finalOptions: RequestInit = Object.assign(
@@ -32,7 +38,7 @@ export async function get<T>(relativePath: string, options?: RequestInit): Promi
     if (options && options.headers) {
         finalOptions.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers);
     }
-    return doRequest(`${apiBaseUrl}/${relativePath}`, finalOptions);
+    return doRequest<T>(`${apiBaseUrl}/${relativePath}`, finalOptions);
 }
 
 export async function post<T>(relativePath: string, body: object = {}, options?: RequestInit): Promise<IResponse<T>> {
@@ -49,8 +55,8 @@ export async function post<T>(relativePath: string, body: object = {}, options?:
     if (options && options.headers) {
         finalOptions.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers);
     }
-    
-    return doRequest(`${apiBaseUrl}/${relativePath}`, finalOptions);
+
+    return doRequest<T>(`${apiBaseUrl}/${relativePath}`, finalOptions);
 }
 
 export async function put<T>(relativePath: string, body: object = {}, options?: RequestInit): Promise<IResponse<T>> {
@@ -68,5 +74,5 @@ export async function put<T>(relativePath: string, body: object = {}, options?: 
         finalOptions.headers = Object.assign({ 'Content-Type': 'application/json' }, options.headers);
     }
 
-    return doRequest(`${apiBaseUrl}/${relativePath}`, finalOptions);
+    return doRequest<T>(`${apiBaseUrl}/${relativePath}`, finalOptions);
 }
