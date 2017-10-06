@@ -7,6 +7,7 @@ import { doLogin, doFacebookLogin } from '../../redux/login/duck';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { IInvitationDTO } from '../../lib/api/dto/InvitationDTO';
 import { doFetchInvitation } from '../../redux/invitation/duck';
+import JoinComponent from './JoinComponent';
 
 interface IOwnProps {}
 
@@ -46,38 +47,11 @@ class LoginContainer extends React.Component<Props, State> {
     }
 
     render() {
-        const invitation = (
-            this.props.invitation
-                ? <h2>{this.props.invitation.user.displayName} invited you to join the cloud {this.props.invitation.cloud.name}</h2>
-                : null
-        );
-
-        const err = (error?: number) => {
-            switch (error) {
-                case 404:
-                    return <h4>Key not found</h4>;
-
-                default:
-                    return null;
-            }
-        };
-
-        console.log(this.props.invitationError);
-
         return (
-            <div className="center-horizontal">
-                {err(this.props.invitationError)}
-                <h1>Join cloud</h1>
-                {invitation}
-                <input
-                    placeholder="Email"
-                />
-                <input
-                    placeholder="Password"
-                    type="password"
-                />
-                <button>Test</button>
-            </div>
+            <JoinComponent
+                invitation={this.props.invitation}
+                invitationError={this.props.invitationError}
+            />
         );
     }
 

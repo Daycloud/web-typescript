@@ -1,3 +1,5 @@
+@import 'src/App.scss';
+
 .column {
   display: flex;
   flex-direction: column;
@@ -8,4 +10,46 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+.center {
+  align-items: center;
+}
+
+.card {
+  width: 30%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  animation: slideDown 1s;
+}
+
+@media screen and (max-width: 1200px){
+  .card {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .card {
+    width: 90%;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    -webkit-transform: translateY(-500px);
+    -moz-transform: translateY(-500px);
+    -ms-transform: translateY(-500px);
+    -o-transform: translateY(-500px);
+    transform: translateY(-500px);
+  }
+  to   {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+
+  }
 }

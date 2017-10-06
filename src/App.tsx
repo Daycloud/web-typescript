@@ -10,6 +10,7 @@ import 'whatwg-fetch';
 import Routes from './Routes';
 
 import './App.scss';
+import './dimensions.css';
 
 const store = createStore(
     reducer,
