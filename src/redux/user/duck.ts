@@ -1,4 +1,4 @@
-import { UserDAO } from './../../lib/api/dto/UserDAO';
+import { IUserDTO } from '../../lib/api/dto/UserDTO';
 
 enum TypeKeys {
     SET_MODEL = 'LOGIN_ACTION_SET_MODEL',
@@ -7,17 +7,17 @@ enum TypeKeys {
 
 interface IModelAction {
     type: TypeKeys.SET_MODEL;
-    user: UserDAO;
+    user: IUserDTO;
 }
 type ActionTypes =
     | IModelAction;
 
-export function setModelActionBuilder(user: UserDAO): IModelAction {
+export function setModelActionBuilder(user: IUserDTO): IModelAction {
     return { type: TypeKeys.SET_MODEL, user: user };
 }
 
 export interface IUserState {
-    user?: UserDAO;
+    user?: IUserDTO;
 }
 const initialState: IUserState = {
     user: undefined

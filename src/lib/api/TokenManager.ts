@@ -1,7 +1,7 @@
 const LOCAL_STORAGE_ACCESS_TOKEN_KEY = 'LOCAL_STORAGE_ACCESS_TOKEN_KEY';
 const LOCAL_STORAGE_REFRESH_TOKEN_KEY = 'LOCAL_STORAGE_REFRESH_TOKEN_KEY';
 
-import { TokensDAO, AccessTokenData, RefreshTokenData } from './dto/TokenDAO';
+import { ITokensDTO, IAccessTokenData, IRefreshTokenData } from './dto/TokenDTO';
 
 function parseJwt(token: string) {
     const base64Url = token.split('.')[1];
@@ -9,10 +9,10 @@ function parseJwt(token: string) {
     return JSON.parse(window.atob(base64));
 }
 
-function decodeAccessToken(token: string): AccessTokenData {
+function decodeAccessToken(token: string): IAccessTokenData {
     return parseJwt(token);
 }
-function decodeRefreshToken(token: string): RefreshTokenData {
+function decodeRefreshToken(token: string): IRefreshTokenData {
     return parseJwt(token);
 }
 
@@ -24,7 +24,7 @@ class TokenManager {
         this.accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY) || undefined;
         this.refreshToken = localStorage.getItem(LOCAL_STORAGE_REFRESH_TOKEN_KEY) || undefined;
     }
-    saveTokens(tokens: TokensDAO) {
+    saveTokens(tokens: ITokensDTO) {
         localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, tokens.access_token);
         localStorage.setItem(LOCAL_STORAGE_REFRESH_TOKEN_KEY, tokens.refresh_token);
         this.accessToken = tokens.access_token;
@@ -35,12 +35,12 @@ class TokenManager {
         localStorage.removeItem(LOCAL_STORAGE_REFRESH_TOKEN_KEY);
     }
     isAccessTokenExpired(): boolean {
-        const decoded: AccessTokenData = decodeAccessToken(this.accessToken!);
+        const decoded: IAccessTokenData = decodeAccessToken(this.accessToken!);
         const isExpired = (decoded.exp > new Date().getTime());
         return isExpired;
     }
     isRefreshTokenExpired(): boolean {
-        const decoded: RefreshTokenData = decodeRefreshToken(this.accessToken!);
+        const decoded: IRefreshTokenData = decodeRefreshToken(this.accessToken!);
         const isExpired = (decoded.exp > new Date().getTime());
         return isExpired;
     }

@@ -1,15 +1,15 @@
 
-export interface TokensDAO {
+export interface ITokensDTO {
     access_token: string;
     refresh_token: string;
 }
 
-export interface AccessTokenData {
+export interface IAccessTokenData {
     userId: string;
     iat: number;
     exp: number;
 }
-export interface RefreshTokenData {
+export interface IRefreshTokenData {
     userId: string;
     type: string;
     logoutVersion: number;

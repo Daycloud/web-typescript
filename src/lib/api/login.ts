@@ -1,14 +1,14 @@
 import { post, get, addAuthenticationHeader, IResponse } from './util';
-import { UserDAO } from './dto/UserDAO';
-import { TokensDAO } from './dto/TokenDAO';
+import { IUserDTO } from './dto/UserDTO';
+import { ITokensDTO } from './dto/TokenDTO';
 
 const facebookLoginPath = 'facebooklogin';
 const localLoginPath = 'login';
 const refreshTokenPath = 'login/refresh';
 
 export interface IFacebookLoginResponseBody {
-    user: UserDAO;
-    tokens: TokensDAO;
+    user: IUserDTO;
+    tokens: ITokensDTO;
 }
 export async function facebookLoginRequest(fbToken: string): Promise<IResponse<IFacebookLoginResponseBody>> {
     const body = {
@@ -18,8 +18,8 @@ export async function facebookLoginRequest(fbToken: string): Promise<IResponse<I
 }
 
 export interface ILoginResponseBody {
-    user: UserDAO;
-    tokens: TokensDAO;
+    user: IUserDTO;
+    tokens: ITokensDTO;
 }
 export async function localLoginRequest(username: string, password: string): Promise<IResponse<ILoginResponseBody>> {
     const body = {
@@ -30,8 +30,8 @@ export async function localLoginRequest(username: string, password: string): Pro
 }
 
 export interface IRefreshTokenResponseBody {
-    user: UserDAO;
-    tokens: TokensDAO;
+    user: IUserDTO;
+    tokens: ITokensDTO;
 }
 export async function refreshTokenRequest(refreshToken: string): Promise<IResponse<IRefreshTokenResponseBody>> {
     return await get<ILoginResponseBody>(refreshTokenPath, addAuthenticationHeader({}, refreshToken));

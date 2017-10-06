@@ -33,7 +33,7 @@ interface ILoggedInAction {
 }
 interface IErrorAction {
     type: TypeKeys.ERROR;
-    error: string;
+    error: number;
 }
 type ActionTypes =
     | ILoadingAction
@@ -50,30 +50,31 @@ function setLoggedInActionBuilder(): ILoggedInAction {
 function setRedirectActionBuilder(url: string): IRedirectAction {
     return { type: TypeKeys.SET_REDIRECT_URL, url: url };
 }
-function setErrorActionBuilder(error: string): IErrorAction {
+function setErrorActionBuilder(error: number): IErrorAction {
     return { type: TypeKeys.ERROR, error: error };
 }
 
 export interface ILoginState {
-    requestInProgress: boolean;
+    loading: boolean;
     isLoggedIn: boolean;
     redirectUrl?: string;
+    error?: number;
 }
 const initialState: ILoginState = {
-    requestInProgress: false,
+    loading: false,
     isLoggedIn: false,
     redirectUrl: undefined,
 };
 export function LoginReducer(state: ILoginState = initialState, action: ActionTypes): ILoginState {
     switch (action.type) {
         case TypeKeys.LOADING:
-            return { ...state, requestInProgress: true };
+            return { ...state, loading: true };
         case TypeKeys.LOGGED_IN:
-            return { ...state, requestInProgress: false, isLoggedIn: true };
+            return { ...state, loading: false, isLoggedIn: true };
         case TypeKeys.SET_REDIRECT_URL:
             return { ...state, redirectUrl: action.url };
         case TypeKeys.ERROR:
-            return { ...state, requestInProgress: false, isLoggedIn: false };
+            return { ...state, loading: false, isLoggedIn: false, error: action.error};
         default:
             return state;
     }
@@ -86,7 +87,7 @@ export function doRefreshTokens(dispatch: Dispatch<IAppState>) {
         try {
             response = await refreshTokenRequest(refreshToken);
         } catch (e) {
-            dispatch(setErrorActionBuilder(''));
+            dispatch(setErrorActionBuilder(0));
             return;
         }
 
@@ -104,7 +105,7 @@ export function doLogin(dispatch: Dispatch<IAppState>) {
         try {
             response = await localLoginRequest(username, password);
         } catch (e) {
-            dispatch(setErrorActionBuilder(''));
+            dispatch(setErrorActionBuilder(0));
             return;
         }
 
@@ -112,6 +113,8 @@ export function doLogin(dispatch: Dispatch<IAppState>) {
             tokenManager.saveTokens(response.data!.tokens);
             dispatch(setUserModelActonBuilder(response.data!.user));
             dispatch(setLoggedInActionBuilder());
+        }else {
+            dispatch(setErrorActionBuilder(response.status));
         }
     };
 }
@@ -122,7 +125,7 @@ export function doFacebookLogin(dispatch: Dispatch<IAppState>) {
         try {
             response = await facebookLoginRequest(fbToken);
         } catch (e) {
-            dispatch(setErrorActionBuilder(''));
+            dispatch(setErrorActionBuilder(0));
             return;
         }
         
