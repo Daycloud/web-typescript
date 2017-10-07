@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const Button = (props: IProps) => {
-    const className = classNames(props.className, 'button')
+    const className = classNames(props.className, 'button');
     return (
         <button className={className} onClick={props.onClick}>
             {props.loading

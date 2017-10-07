@@ -38,7 +38,7 @@ class EnsureloginContainer extends React.Component<Props, {}> {
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
-        isLoggedIn: appState.login.isLoggedIn
+        isLoggedIn: appState.login.model.isLoggedIn
     };
 };
 

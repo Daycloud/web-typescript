@@ -43,7 +43,6 @@ class JoinComponent extends React.Component<IProps, IState> {
             </div>
         );
     }
-
-};
+}
 
 export default JoinComponent;

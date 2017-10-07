@@ -92,7 +92,7 @@ class LoginContainer extends React.Component<Props, State> {
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
         error: appState.login.error,
-        isLoggedIn: appState.login.isLoggedIn
+        isLoggedIn: appState.login.model.isLoggedIn
     };
 };
 

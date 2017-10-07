@@ -38,8 +38,8 @@ class LoginRedirector extends React.Component<Props, {}> {
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
-        isLoggedIn: appState.login.isLoggedIn,
-        redirectUrl: appState.login.redirectUrl
+        isLoggedIn: appState.login.model.isLoggedIn,
+        redirectUrl: appState.login.model.redirectUrl
     };
 };
 
