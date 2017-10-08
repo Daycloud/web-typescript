@@ -15,7 +15,7 @@ function checkAndAppendName(name: string) {
 
 export interface IStoreState<T> {
     model: T;
-    error?: number;
+    errorCode?: number;
     isLoading: boolean;
     isBackgroundLoading: boolean;
 }
@@ -76,7 +76,7 @@ export default class RequestDuck<T> {
                     isLoading: false, isBackgroundLoading: false, model: Object.assign(state.model, action.model)
                 };
             case this.TYPEKEY_SET_ERROR:
-                return { isLoading: false, isBackgroundLoading: false, error: action.error, model: state.model };
+                return { isLoading: false, isBackgroundLoading: false, errorCode: action.error, model: state.model };
             default:
                 return state;
         }

@@ -9,3 +9,13 @@ body {
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box; }
+
+.bg-primary {
+  background: #0063A5; }
+
+.bg-transparent {
+  background: transparent;
+  color: black; }
+
+.t-c {
+  text-align: center; }

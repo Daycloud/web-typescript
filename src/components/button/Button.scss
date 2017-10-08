@@ -1,9 +1,20 @@
+@import 'src/App.scss';
+
 .button {
   width: 100%;
   border: 0;
   border-radius: 3px;
   height: 50px;
   color: white;
+  background: $primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-s {
+  height: 30px;
 }
 
 .button:hover {

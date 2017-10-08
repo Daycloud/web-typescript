@@ -1,24 +1,22 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
+
 import { RouteComponentProps, withRouter } from 'react-router';
 
 import { IAppState } from '../../redux/index';
-import { doFacebookLogin } from '../../redux/login/duck';
-import LoginFormContainer from '../../components/login/loginform/LoginFormContainer';
-
-import './login.css';
+import TextEntry from '../../components/textentry/TextEntry';
+import Button from '../../components/button/Button';
 
 interface IOwnProps {
 
 }
 
 interface IReduxProps {
-    error?: number;
-    isLoggedIn: boolean;
+
 }
 
 interface IActionProps {
-    facebookLogin: (fbToken: string) => void;
+
 }
 
 interface IRouteProps {
@@ -26,8 +24,7 @@ interface IRouteProps {
 }
 
 interface IState {
-    email: string;
-    password: string;
+
 }
 
 type Props = IOwnProps & IReduxProps & IActionProps & RouteComponentProps<IRouteProps>;
@@ -43,18 +40,16 @@ class LoginContainer extends React.Component<Props, State> {
         };
     }
 
-    componentDidMount() {
-        if (this.props.isLoggedIn) {
-            this.props.history.replace('/');
-        }
-    }
-
     render() {
 
         return (
             <div className="center-horizontal">
-                <h1>Login</h1>
-                <LoginFormContainer />
+                <h1>Register</h1>
+                <TextEntry name="email" label="Email" inputType="email"/>
+                <TextEntry name="displayName" label="Display name" inputType="text"/>
+                <TextEntry name="password" label="Password" inputType="password"/>
+                <TextEntry name="confirmPassword" label="Confirm password" inputType="password"/>
+                <Button text="Register" loading={false} />
             </div>
         );
     }
@@ -62,14 +57,13 @@ class LoginContainer extends React.Component<Props, State> {
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
     return {
-        error: appState.login.errorCode,
-        isLoggedIn: appState.login.model.isLoggedIn
+
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
     return {
-        facebookLogin: doFacebookLogin(dispatch),
+
     };
 };
 

@@ -7,8 +7,8 @@ import * as classNames from 'classnames';
 
 interface IProps {
     text: string;
-    loading: boolean;
-    className: string;
+    loading?: boolean;
+    className?: string;
 
     onClick?: () => void;
 }
@@ -18,7 +18,7 @@ const Button = (props: IProps) => {
     return (
         <button className={className} onClick={props.onClick}>
             {props.loading
-                ? <Spinner />
+                ? <Spinner small={true}/>
                 : props.text
             }
 

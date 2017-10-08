@@ -1,4 +1,4 @@
-$primary-color: red;
+$primary-color: #0063A5;
 $background-color: #eeeeee;
 
 .center-horizontal {
@@ -14,4 +14,17 @@ body {
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+}
+
+.bg-primary {
+  background: $primary-color;
+}
+
+.bg-transparent {
+  background: transparent;
+  color: black;
+}
+
+.t-c {
+  text-align: center;
 }
