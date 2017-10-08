@@ -68,7 +68,11 @@ export function doFetchInvitation(dispatch: Dispatch<IAppState>) {
         let response: IResponse<IFetchInvitationResponse> = await fetchInvitationRequest(key);
 
         if (isSuccessResponse(response.status)) {
-            dispatch(setModelActionBuilder(response.data!.invitation));
+            const invitation: IInvitationDTO = {
+                user: response.data!.inviter,
+                cloud: response.data!.cloud,
+            };
+            dispatch(setModelActionBuilder(invitation));
         }else {
             dispatch(setErrorActionBuilder(response.status));
         }

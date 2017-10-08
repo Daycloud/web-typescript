@@ -8,6 +8,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { IInvitationDTO } from '../../lib/api/dto/InvitationDTO';
 import { doFetchInvitation } from '../../redux/invitation/duck';
 import JoinComponent from './JoinComponent';
+import { doJoinByKey } from '../../redux/join/duck';
 
 interface IOwnProps {}
 
@@ -25,33 +26,57 @@ interface IActionProps {
     login: (username: string, password: string) => void;
     facebookLogin: (fbToken: string) => void;
     fetchInvitation: (key: string) => void;
+    joinByKey: (key: string) => void;
 }
 
 interface IRouteProps {}
 
-interface IState {}
+interface IState {
+    joinKey: string;
+}
 
 type Props = IOwnProps & IReduxProps & IActionProps & RouteComponentProps<IRouteProps>;
 type State = IState;
 
 class LoginContainer extends React.Component<Props, State> {
 
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            joinKey: ''
+        };
+    }
+
     componentDidMount() {
         const params = new URLSearchParams(this.props.location.search);
         const key = params.get('key');
         if (key) {
             this.props.fetchInvitation(key);
+            this.state = {
+                joinKey: key
+            };
         }else {
             this.props.history.replace('/');
         }
     }
 
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.isLoggedIn) {
+            nextProps.joinByKey(this.state.joinKey);
+        }
+    }
+
     render() {
         return (
-            <JoinComponent
-                invitation={this.props.invitation}
-                invitationError={this.props.invitationError}
-            />
+            <div>
+                {this.props.invitation
+                    ? <JoinComponent
+                        invitation={this.props.invitation}
+                        invitationError={this.props.invitationError}
+                        joinKey={this.state.joinKey}
+                    /> : null
+                }
+            </div>
         );
     }
 
@@ -72,7 +97,8 @@ const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
     return {
         login: doLogin(dispatch),
         facebookLogin: doFacebookLogin(dispatch),
-        fetchInvitation: doFetchInvitation(dispatch)
+        fetchInvitation: doFetchInvitation(dispatch),
+        joinByKey: doJoinByKey(dispatch)
     };
 };
 

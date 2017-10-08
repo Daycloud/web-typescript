@@ -22,7 +22,7 @@ interface ILoginModel {
 }
 export interface ILoginState extends IStoreState<ILoginModel> {
 }
-const loginDuck = new RequestDuck<ILoginModel>('Login', {
+export const loginDuck = new RequestDuck<ILoginModel>('Login', {
     isLoggedIn: false,
     redirectUrl: undefined
 });

@@ -7,15 +7,33 @@ interface IProps {
     name: string;
     label: string;
     inputType: string;
+    value: string;
     className?: string;
+    showError?: boolean;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const TextEntry = (props: IProps) => {
-    const className = classNames(props.className, 'text-entry');
+    const wrapperClassName = classNames(
+        props.className,
+        'text-entry'
+    );
+
+    const inputClassName = classNames(
+        'text-entry-input',
+        {'text-entry-error': props.showError}
+    );
+
     return (
-            <div className={className}>
+            <div className={wrapperClassName}>
                 <label className="text-entry-label" htmlFor={props.name}>{props.label}</label>
-                <input className="text-entry-input" type={props.inputType} name={props.name} />
+                <input
+                    className={inputClassName}
+                    value={props.value}
+                    onChange={props.onChange}
+                    type={props.inputType}
+                    name={props.name}
+                />
             </div>
         );
 

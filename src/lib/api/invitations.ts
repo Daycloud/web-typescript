@@ -1,13 +1,15 @@
 
 import { get, post, addAuthenticationHeader, IResponse } from './util';
-import { ICloudDTO } from './dto/CloudDTO';
+import { ICloudDTO, IPublicCloudDTO } from './dto/CloudDTO';
 import tokenManager from './TokenManager';
-import { IInvitationDTO } from './dto/InvitationDTO';
+import { IPublicUserDTO } from './dto/UserDTO';
 
 const invitationPath = 'invitations';
+const joinPath = 'clouds/joinbykey';
 
 export interface IFetchInvitationResponse {
-    invitation: IInvitationDTO;
+    cloud: IPublicCloudDTO;
+    inviter: IPublicUserDTO;
 }
 export async function fetchInvitationRequest(key: string): Promise<IResponse<IFetchInvitationResponse>> {
     return await get<IFetchInvitationResponse>(`${invitationPath}?key=${key}`);
@@ -21,8 +23,8 @@ export async function joinByKeyRequest(key: string): Promise<IResponse<IJoinByKe
         key: key
     };
     return await post<IJoinByKeyResponse>(
-        invitationPath,
+        joinPath,
         body,
-        addAuthenticationHeader({}, tokenManager.refreshToken!)
+        addAuthenticationHeader({}, tokenManager.accessToken!)
     );
 }

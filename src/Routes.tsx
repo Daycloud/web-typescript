@@ -6,7 +6,8 @@ import EnsureLoggedInContainer  from './routes/ensurelogin/EnsureloginContainer
 import Home from './routes/home/Home';
 import LoginContainer from './routes/login/LoginContainer';
 import LoginRedirector from './routes/ensurelogin/LoginRedirector';
-import JoinContainer from './routes/join/JoinContainer';
+import JoinContainer from './routes/joincloud/JoinContainer';
+import RegisterFormContainer from './routes/register/RegisterFormContainer';
 
 const Routes: React.StatelessComponent = () => (
     <BrowserRouter basename="/">
@@ -15,6 +16,7 @@ const Routes: React.StatelessComponent = () => (
                 <Switch>
                     <Route path="/login" component={LoginContainer}/>
                     <Route path="/join" component={JoinContainer} />
+                    <Route path="/register" component={RegisterFormContainer} />
                     <EnsureLoggedInContainer>
                         <Route path="/" exact={true} component={Home} />
                     </EnsureLoggedInContainer>

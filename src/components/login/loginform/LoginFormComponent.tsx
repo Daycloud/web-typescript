@@ -2,33 +2,89 @@ import * as React from 'react';
 
 import TextEntry from '../../textentry/TextEntry';
 import Button from '../../button/Button';
+import { ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 
 interface IProps {
     showLoading: boolean;
-    error?: string;
-    onLoginClicked: (username: string, password: string) => void;
+    error?: number;
+    registerRedirect: string;
+    onLoginClicked: (email: string, password: string) => void;
 }
 
-const LoginFormComponent = (props: IProps) => {
+interface IState {
+    email: string;
+    password: string;
+}
 
-    const onLoginClicked = () => {
-        props.onLoginClicked('iversen332@gmail.com', 'pettedr');
-    };
+type Props = IProps;
+type State = IState;
 
-    return (
-        <div>
-            <h5 style={{color: 'red'}}>{props.error}</h5>
-            <TextEntry name="email" label="Email" inputType="email"/>
-            <TextEntry className="m-t-m" name="password" label="Password" inputType="password"/>
-            <Button
-                className="button-s m-t-l bg-primary"
-                text="Sign in"
-                loading={props.showLoading}
-                onClick={() => onLoginClicked()}
-            />
-            <Button className="button-s m-t-s bg-transparent" text="New user?" />
-        </div>
-    );
-};
+class LoginFormComponent extends React.Component<Props, State> {
+
+    err = (error?: number) => {
+        switch (error) {
+            case 401:
+                return (
+                <h5 className="t-c">
+                    Wrong username or password. <Link to={'/resetpassword'}>Forgot your password?</Link>
+                </h5>);
+
+            case 422:
+                return 'Enter username and password';
+
+            default:
+                return undefined;
+        }
+    }
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        };
+    }
+
+    render() {
+        return (
+            <div className="w-100">
+                {this.err(this.props.error)}
+                <TextEntry
+                    name="email"
+                    label="Email"
+                    inputType="email"
+                    value={this.state.email}
+                    onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                        this.setState({
+                            email: evt.target.value
+                        });
+                    }}
+                />
+                <TextEntry
+                    className="m-t-m"
+                    name="password"
+                    label="Password"
+                    inputType="password"
+                    value={this.state.password}
+                    onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                        this.setState({
+                            password: evt.target.value
+                        });
+                    }}
+                />
+                <Button
+                    className="button-s m-t-l bg-primary"
+                    text="Sign in"
+                    loading={this.props.showLoading}
+                    onClick={() => this.props.onLoginClicked(this.state.email, this.state.password)}
+                />
+                <Link to={this.props.registerRedirect}>
+                    <Button className="button-s m-t-s bg-transparent" text="New user?" />
+                </Link>
+            </div>
+        );
+    }
+}
 
 export default LoginFormComponent;

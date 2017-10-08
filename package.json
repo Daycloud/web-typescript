@@ -17,6 +17,7 @@
     "npm-run-all": "4.1.1",
     "react": "15.6.1",
     "react-dom": "15.5.1",
+    "react-message": "^1.4.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "4.1.1",
     "react-scripts-ts": "2.3.1",

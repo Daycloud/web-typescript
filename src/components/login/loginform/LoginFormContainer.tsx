@@ -6,6 +6,7 @@ import { connect, Dispatch } from 'react-redux';
 import { doLogin } from '../../../redux/login/duck';
 
 interface IOwnProps {
+    registerRedirect: string;
 }
 
 interface IReduxProps {
@@ -21,24 +22,12 @@ type Props = IOwnProps & IReduxProps & IActionProps;
 
 const LoginFormContainer = (props: Props) => {
 
-    const err = (error?: number): string | undefined => {
-        switch (error) {
-            case 401:
-                return 'Wrong username or password';
-
-            case 422:
-                return 'Enter username and password';
-
-            default:
-                return undefined;
-        }
-    };
-
     return (
         <LoginFormComponent
             showLoading={props.showLoading}
-            error={err(props.errorCode)}
+            error={props.errorCode}
             onLoginClicked={props.login}
+            registerRedirect={props.registerRedirect}
         />
     );
 };

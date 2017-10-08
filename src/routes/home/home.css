@@ -20,6 +20,9 @@ body {
 .t-c {
   text-align: center; }
 
+.w-100 {
+  width: 100%; }
+
 .home {
   background: #0063A5;
   width: 200px; }

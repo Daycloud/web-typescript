@@ -1,4 +1,4 @@
-const apiBaseUrl = 'http://localhost:8080/v2.0';
+const apiBaseUrl = 'http://192.168.0.100:8080/v2.0';
 
 export interface IResponse<T> {
     status: number;

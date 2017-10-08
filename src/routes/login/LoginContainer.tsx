@@ -49,12 +49,18 @@ class LoginContainer extends React.Component<Props, State> {
         }
     }
 
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.isLoggedIn) {
+            this.props.history.push('/');
+        }
+    }
+
     render() {
 
         return (
             <div className="center-horizontal">
                 <h1>Login</h1>
-                <LoginFormContainer />
+                <LoginFormContainer registerRedirect="/register"/>
             </div>
         );
     }

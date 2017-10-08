@@ -36,6 +36,19 @@ export default class RequestDuck<T> {
     readonly TYPEKEY_SET_MODEL: string;
     readonly TYPEKEY_SET_ERROR: string;
 
+    createSetLoadingAction = (): IAction<T> => {
+        return { type: this.TYPEKEY_LOADING };
+    }
+    createSetBackgroundLoadingAction = (): IAction<T> => {
+        return { type: this.TYPEKEY_LOADING_BACKGROUND };
+    }
+    createSetModelAction = (model: T): IAction<T> => {
+        return { type: this.TYPEKEY_SET_MODEL, model: model };
+    }
+    createSetErrorAction = (error: number): IAction<T> => {
+        return { type: this.TYPEKEY_SET_ERROR, error: error };
+    }
+
     constructor(name: string, initialModel: T) {
         checkAndAppendName(name);
         this.name = name;
@@ -49,18 +62,7 @@ export default class RequestDuck<T> {
             model: initialModel
         };
     }
-    createSetLoadingAction = (): IAction<T> => {
-        return { type: this.TYPEKEY_LOADING };
-    }
-    createSetBackgroundLoadingAction = (): IAction<T> => {
-        return { type: this.TYPEKEY_LOADING_BACKGROUND };
-    }
-    createSetModelAction = (model: T): IAction<T> => {
-        return { type: this.TYPEKEY_SET_MODEL, model: model };
-    }
-    createSetErrorAction = (error: number): IAction<T> => {
-        return { type: this.TYPEKEY_SET_ERROR, error: error };
-    }
+
     reducer = (state: IStoreState<T>, action: IAction<T>): IStoreState<T> => {
         if (!state) {
             state = this.INITIAL_STATE;
