@@ -3,6 +3,7 @@
   flex-direction: column-reverse;
   border-radius: 10px;
   width: 32%;
+  margin-right: 2%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   -webkit-transition: box-shadow 0.3s;
   -moz-transition: box-shadow 0.3s;
@@ -13,6 +14,16 @@
 .cloud-list-component:hover {
   cursor: pointer;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+@media screen and (max-width: 1200px) {
+  .cloud-list-component {
+    width: 48%;
+    margin-right: 2%; } }
+
+@media screen and (max-width: 800px) {
+  .cloud-list-component {
+    width: 90%;
+    margin-right: 0; } }
 
 .cloud-image {
   position: relative;
@@ -29,11 +40,3 @@
   margin: 0;
   bottom: 10px;
   left: 10px; }
-
-@media screen and (max-width: 1200px) {
-  .cloud-list-component {
-    width: 48%; } }
-
-@media screen and (max-width: 800px) {
-  .cloud-list-component {
-    width: 90%; } }
