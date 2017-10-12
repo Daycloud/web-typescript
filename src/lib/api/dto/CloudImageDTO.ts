@@ -1,4 +1,6 @@
+import { IPublicUserDTO } from './UserDTO';
+
 export interface ICloudImageDTO {
-    name: string;
-    id: string;
+    owner: IPublicUserDTO;
+    _id: string;
 }

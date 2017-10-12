@@ -16,7 +16,11 @@ interface IReduxProps {
 type Props = IOwnProps & IReduxProps;
 
 const Home = (props: Props) => {
-        return <CloudsContainer />;
+        return (
+            <div>
+                <CloudsContainer />
+            </div>
+        );
 };
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {

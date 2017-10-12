@@ -10,7 +10,7 @@ export interface IPublicCloudDTO {
 export interface ICloudDTO extends IPublicCloudDTO {
     owner: IPublicUserDTO;
     administrators: string[];
-    members: IPublicUserDTO;
+    members: IPublicUserDTO[];
     cloudImages: ICloudImageDTO[];
     settings: ISettingsDTO;
 }

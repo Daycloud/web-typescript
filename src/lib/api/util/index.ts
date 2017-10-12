@@ -1,4 +1,5 @@
-const apiBaseUrl = 'http://192.168.0.102:8080/v2.0';
+// export const apiBaseUrl = 'http://192.168.0.102:8080/v2.0';
+export const apiBaseUrl = 'https://api.daycloudapp.com:8181/v2.0';
 
 export interface IResponse<T> {
     status: number;

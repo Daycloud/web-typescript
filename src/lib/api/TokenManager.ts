@@ -35,15 +35,23 @@ class TokenManager {
         localStorage.removeItem(LOCAL_STORAGE_REFRESH_TOKEN_KEY);
     }
     isAccessTokenExpired(): boolean {
-        const decoded: IAccessTokenData = decodeAccessToken(this.accessToken!);
-        const isExpired = (decoded.exp < new Date().getTime());
-        return isExpired;
+        try {
+            const decoded: IAccessTokenData = decodeAccessToken(this.accessToken!);
+            const isExpired = (decoded.exp < new Date().getTime());
+            return isExpired;
+        } catch (error) {
+            return false;
+        }
     }
     isRefreshTokenExpired(): boolean {
-        const decoded: IRefreshTokenData = decodeRefreshToken(this.accessToken!);
-        const isExpired = (decoded.exp < new Date().getTime());
-        return isExpired;
+        try {
+            const decoded: IRefreshTokenData = decodeRefreshToken(this.accessToken!);
+            const isExpired = (decoded.exp < new Date().getTime());
+            return isExpired;
+        } catch (error) {
+            return false;
+        }
     }
 }
-const tokenManager = new TokenManager();
-export default tokenManager;
+const TokenManagerInstance = new TokenManager();
+export default TokenManagerInstance;

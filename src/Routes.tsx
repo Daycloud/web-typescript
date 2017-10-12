@@ -8,7 +8,8 @@ import LoginContainer from './routes/login/LoginContainer';
 import LoginRedirector from './routes/ensurelogin/LoginRedirector';
 import JoinContainer from './routes/joincloud/JoinContainer';
 import RegisterComponent from './routes/register/RegisterComponent';
-import CloudComponent from "./routes/clouds/cloud/CloudComponent";
+import CloudContainer from './routes/clouds/cloud/CloudContainer';
+import NavbarContainer from './routes/navbar/NavbarContainer';
 
 const Routes: React.StatelessComponent = () => (
     <BrowserRouter basename="/">
@@ -19,7 +20,8 @@ const Routes: React.StatelessComponent = () => (
                     <Route path="/join" component={JoinContainer} />
                     <Route path="/register" component={RegisterComponent} />
                     <EnsureLoggedInContainer>
-                        <Route path="/clouds/:cloudId" component={CloudComponent} />
+                        <NavbarContainer />
+                        <Route path="/clouds/:cloudId" component={CloudContainer} />
                         <Route path="/" exact={true} component={Home} />
                     </EnsureLoggedInContainer>
                 </Switch>

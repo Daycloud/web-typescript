@@ -2,6 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 
 import { ICloudDTO } from '../../../lib/api/dto/CloudDTO';
+import { apiBaseUrl } from '../../../lib/api/util/index';
+import ImageContainer from '../../../components/image/ImageContainer';
 
 import './CloudListComponent.css';
 
@@ -17,10 +19,16 @@ type Props = IProps & RouteComponentProps<IRouteProps>;
 
 const CloudComponent = (props: Props) => {
 
+    const firstImage = props.cloud.cloudImages[0];
+
+    const imgSrc = firstImage
+        ? `${apiBaseUrl}/clouds/${props.cloud._id}/images/${firstImage._id}/image?type=standard`
+        : null;
+
     return (
         <div className="cloud-list-component" onClick={() => props.history.push(`/clouds/${props.cloud._id}`)}>
+            {imgSrc ? <ImageContainer url={imgSrc} /> : null}
             <div className="image-filter" />
-            <img className="cloud-image" src="https://ritzcarlton-h.assetsadobe.com/is/image/content/dam/the-ritz-carlton/hotels/asia-pacific/singapore/singapore/new-images/05_KLK%20Photography_Ritz%20Carlton%202016.png?$XlargeViewport100pct$" />
             <h3 className="cloud-title">{props.cloud.name}</h3>
         </div>
     );

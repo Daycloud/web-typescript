@@ -27,7 +27,7 @@ class LoginRedirector extends React.Component<Props, {}> {
         if (isLoggingIn && this.props.redirectUrl) {
             this.props.history.replace(this.props.redirectUrl);
         } else if (isLoggingOut) {
-            // do any kind of cleanup or post-logout redirection here
+            this.props.history.replace('/login');
         }
     }
 

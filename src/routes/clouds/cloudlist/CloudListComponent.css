@@ -2,36 +2,44 @@
   position: relative;
   flex-direction: column-reverse;
   border-radius: 10px;
-  width: 32%;
-  margin-right: 2%;
+  width: 32vw;
+  height: 24vw;
+  margin-right: 2vw;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   -webkit-transition: box-shadow 0.3s;
   -moz-transition: box-shadow 0.3s;
   -ms-transition: box-shadow 0.3s;
   -o-transition: box-shadow 0.3s;
-  transition: box-shadow 0.3s; }
+  transition: all .2s ease-in-out; }
 
 .cloud-list-component:hover {
   cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+  transform: scale(1.05); }
+
+.cloud-list-component:hover .image-filter {
+  opacity: 0; }
+
+.cloud-list-component:hover .cloud-title {
+  opacity: 0; }
 
 @media screen and (max-width: 1200px) {
   .cloud-list-component {
-    width: 48%;
-    margin-right: 2%; } }
+    width: 48vw;
+    height: 32vw; } }
 
 @media screen and (max-width: 800px) {
   .cloud-list-component {
-    width: 90%;
-    margin-right: 0; } }
+    width: 90vw;
+    height: 48vw; } }
 
 .cloud-image {
-  position: relative;
+  position: absolute;
   top: 0;
   background-position: center center;
   border-radius: 10px;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  object-fit: cover; }
 
 .cloud-title {
   color: white;
@@ -39,4 +47,19 @@
   padding: 0;
   margin: 0;
   bottom: 10px;
-  left: 10px; }
+  left: 10px;
+  text-shadow: 1px 1px #000000;
+  transition: all .2s ease-in-out; }
+
+.image-filter {
+  background-color: black;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 10px;
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -ms-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s; }

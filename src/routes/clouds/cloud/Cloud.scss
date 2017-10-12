@@ -1,0 +1,31 @@
+.gallery-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.gallery-container > * {
+  margin-right: 1vw;
+  margin-top: 1vw;
+}
+
+.cloud-gallery-image {
+  width: 18vw;
+  height: 18vw;
+  position: relative;
+}
+
+@media screen and (max-width: 1200px){
+  .cloud-gallery-image {
+    width: 28vw;
+    height: 28vw;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .cloud-gallery-image {
+    width: 44vw;
+    height: 44vw
+  }
+}
