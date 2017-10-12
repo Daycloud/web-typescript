@@ -5,6 +5,7 @@ import { IUserState, UserReducer } from './user/duck';
 import { IInvitationState, InvitationReducer, } from './invitation/duck';
 import { IJoinByKeyState, JoinByKeyReducer } from './join/duck';
 import { IRegisterState, RegisterReducer } from './register/duck';
+import { CloudsReducer, ICloudsState } from './clouds/duck';
 
 export interface IAppState {
     login: ILoginState;
@@ -12,6 +13,7 @@ export interface IAppState {
     invitation: IInvitationState;
     join: IJoinByKeyState;
     register: IRegisterState;
+    clouds: ICloudsState;
 }
 
 const reducer = combineReducers<IAppState>({
@@ -19,7 +21,8 @@ const reducer = combineReducers<IAppState>({
     user: UserReducer,
     invitation: InvitationReducer,
     joinByKey: JoinByKeyReducer,
-    register: RegisterReducer
+    register: RegisterReducer,
+    clouds: CloudsReducer
 });
 
 export default reducer;

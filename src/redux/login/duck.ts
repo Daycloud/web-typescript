@@ -13,6 +13,7 @@ import tokenManager from '../../lib/api/TokenManager';
 import { setModelActionBuilder as setUserModelActonBuilder } from '../user/duck';
 import { IAppState } from '../index';
 import { IResponse, isSuccessResponse } from './../../lib/api/util/index';
+import TokenManager from '../../lib/api/TokenManager';
 
 import RequestDuck from '../../lib/redux/RequestDuck';
 
@@ -23,9 +24,10 @@ interface ILoginModel {
 export interface ILoginState extends IStoreState<ILoginModel> {
 }
 export const loginDuck = new RequestDuck<ILoginModel>('Login', {
-    isLoggedIn: false,
+    isLoggedIn: TokenManager.isRefreshTokenExpired(),
     redirectUrl: undefined
 });
+
 export const LoginReducer = loginDuck.reducer;
 
 export function doRefreshTokens(dispatch: Dispatch<IAppState>) {

@@ -6,6 +6,7 @@ import './Spinner.css';
 interface IProps {
     small?: boolean;
     large?: boolean;
+    colorClassName?: string;
 }
 
 const Spinner = (props: IProps) => {
@@ -18,9 +19,9 @@ const Spinner = (props: IProps) => {
 
     return (
         <div className={className}>
-            <div className="bounce1"/>
-            <div className="bounce2"/>
-            <div className="bounce3"/>
+            <div className={'bounce1 ' + props.colorClassName}/>
+            <div className={'bounce2 ' + props.colorClassName}/>
+            <div className={'bounce3 ' + props.colorClassName}/>
         </div>
     );
 };

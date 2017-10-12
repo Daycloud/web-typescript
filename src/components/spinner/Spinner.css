@@ -16,8 +16,8 @@
   height: 10px; }
 
 .spinner-large > div {
-  width: 18px;
-  height: 18px; }
+  width: 42px;
+  height: 42px; }
 
 .spinner .bounce1 {
   -webkit-animation-delay: -0.32s;

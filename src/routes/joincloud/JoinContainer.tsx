@@ -9,6 +9,7 @@ import { IInvitationDTO } from '../../lib/api/dto/InvitationDTO';
 import { doFetchInvitation } from '../../redux/invitation/duck';
 import JoinComponent from './JoinComponent';
 import { doJoinByKey } from '../../redux/join/duck';
+import { Link } from 'react-router-dom';
 
 interface IOwnProps {}
 
@@ -72,9 +73,14 @@ class LoginContainer extends React.Component<Props, State> {
                 {this.props.invitation
                     ? <JoinComponent
                         invitation={this.props.invitation}
-                        invitationError={this.props.invitationError}
                         joinKey={this.state.joinKey}
-                    /> : null
+                    />
+                    : <div
+                        className="w-100 t-c m-t-l center-horizontal"
+                    >
+                        Key not found
+                        <Link to="/">Home</Link>
+                    </div>
                 }
             </div>
         );
@@ -98,7 +104,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
         login: doLogin(dispatch),
         facebookLogin: doFacebookLogin(dispatch),
         fetchInvitation: doFetchInvitation(dispatch),
-        joinByKey: doJoinByKey(dispatch)
+        joinByKey: doJoinByKey(dispatch),
     };
 };
 

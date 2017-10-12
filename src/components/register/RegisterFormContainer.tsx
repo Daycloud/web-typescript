@@ -14,7 +14,7 @@ export interface IReduxProps {
 }
 
 interface IActionProps {
-    register: (email: string, password: string, displayName: string) => void;
+    doRegister: (email: string, password: string, displayName: string) => void;
 }
 
 export interface IState {
@@ -52,7 +52,7 @@ class RegisterFormContainer extends React.Component<Props, State> {
 
     onRegisterClicked = () => {
         if (!this.formHasErrors()) {
-            this.props.register(this.state.email, this.state.password, this.state.displayName);
+            this.props.doRegister(this.state.email, this.state.password, this.state.displayName);
         }
     }
 
@@ -144,7 +144,7 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
     return {
-        register: doRegister(dispatch)
+        doRegister: doRegister(dispatch)
     };
 };
 

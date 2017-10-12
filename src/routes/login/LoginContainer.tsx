@@ -25,22 +25,12 @@ interface IRouteProps {
 
 }
 
-interface IState {
-    email: string;
-    password: string;
-}
-
 type Props = IOwnProps & IReduxProps & IActionProps & RouteComponentProps<IRouteProps>;
-type State = IState;
 
-class LoginContainer extends React.Component<Props, State> {
+class LoginContainer extends React.Component<Props, {}> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            email: '',
-            password: ''
-        };
     }
 
     componentDidMount() {
@@ -59,8 +49,10 @@ class LoginContainer extends React.Component<Props, State> {
 
         return (
             <div className="center-horizontal">
-                <h1>Login</h1>
-                <LoginFormContainer registerRedirect="/register"/>
+                <div className="w-33">
+                    <h1 className="t-c">Login</h1>
+                    <LoginFormContainer registerRedirect="/register"/>
+                </div>
             </div>
         );
     }

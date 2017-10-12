@@ -11,7 +11,7 @@ body {
   box-sizing: border-box; }
 
 .bg-primary {
-  background: #0063A5; }
+  background: #0063A5 !important; }
 
 .bg-transparent {
   background: transparent;
@@ -20,5 +20,15 @@ body {
 .t-c {
   text-align: center; }
 
+.w-33 {
+  width: 33%; }
+
+.w-90 {
+  width: 90%; }
+
 .w-100 {
   width: 100%; }
+
+@media screen and (max-width: 800px) {
+  .w-33 {
+    width: 90%; } }

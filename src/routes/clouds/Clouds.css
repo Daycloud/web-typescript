@@ -1,0 +1,8 @@
+.clouds-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.clouds-container > * {
+  margin-top: 20px; }

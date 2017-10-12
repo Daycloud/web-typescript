@@ -36,12 +36,12 @@ class TokenManager {
     }
     isAccessTokenExpired(): boolean {
         const decoded: IAccessTokenData = decodeAccessToken(this.accessToken!);
-        const isExpired = (decoded.exp > new Date().getTime());
+        const isExpired = (decoded.exp < new Date().getTime());
         return isExpired;
     }
     isRefreshTokenExpired(): boolean {
         const decoded: IRefreshTokenData = decodeRefreshToken(this.accessToken!);
-        const isExpired = (decoded.exp > new Date().getTime());
+        const isExpired = (decoded.exp < new Date().getTime());
         return isExpired;
     }
 }

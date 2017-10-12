@@ -1,0 +1,47 @@
+.cloud-list-component {
+  position: relative;
+  flex-direction: column-reverse;
+  border-radius: 10px;
+  width: 32%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  -webkit-transition: box-shadow 0.3s;
+  -moz-transition: box-shadow 0.3s;
+  -ms-transition: box-shadow 0.3s;
+  -o-transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+}
+
+.cloud-list-component:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.cloud-image {
+  position: relative;
+  top: 0;
+  background-position: center center;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.cloud-title {
+  color: white;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  bottom: 10px;
+  left: 10px;
+}
+
+@media screen and (max-width: 1200px){
+  .cloud-list-component {
+    width: 48%;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .cloud-list-component {
+    width: 90%;
+  }
+}

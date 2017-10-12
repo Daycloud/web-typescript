@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 
 import { IInvitationDTO } from '../../lib/api/dto/InvitationDTO';
 
-import RegisterFormContainer from '../register/RegisterFormContainer';
+import RegisterFormContainer from '../../components/register/RegisterFormContainer';
 import LoginFormContainer from '../../components/login/loginform/LoginFormContainer';
 import JoinActionComponent from './joinactioncomponent/JoinActionComponent';
 
@@ -11,7 +11,6 @@ import './join.css';
 
 interface IProps {
     invitation: IInvitationDTO;
-    invitationError?: number;
     joinKey: string;
 }
 

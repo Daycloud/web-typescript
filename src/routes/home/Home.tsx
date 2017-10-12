@@ -3,6 +3,7 @@ import { IAppState } from '../../redux/index';
 import { connect } from 'react-redux';
 
 import './home.css';
+import CloudsContainer from '../clouds/CloudsContainer';
 
 interface IOwnProps {
 
@@ -15,7 +16,7 @@ interface IReduxProps {
 type Props = IOwnProps & IReduxProps;
 
 const Home = (props: Props) => {
-        return <div className="home">This is home</div>;
+        return <CloudsContainer />;
 };
 
 const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
