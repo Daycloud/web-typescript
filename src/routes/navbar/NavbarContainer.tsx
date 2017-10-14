@@ -1,9 +1,10 @@
 import * as React from 'react';
-
-import Button from '../../components/button/Button';
 import { doLogout } from '../../redux/login/duck';
 import { IAppState } from '../../redux/index';
 import { connect, Dispatch } from 'react-redux';
+
+import './Navbar.css';
+import {Link} from 'react-router-dom';
 
 interface IProps {
 }
@@ -21,8 +22,13 @@ type Props = IProps & IReduxProps & IActionProps;
 const NavbarContainer = (props: Props) => {
 
     return (
-        <div className="center-horizontal">
-            <Button text="Sign out" onClick={props.logout}/>
+        <div className="center-horizontal navbar navbar-bg">
+            <Link to="/" className="nav-link-logo">
+                <img src={require('./daycloud_logo.png')} className="nav-logo" />
+            </Link>
+            <div style={{width: '150px', justifySelf: 'right'}}>
+                <div className="nav-logout" onClick={props.logout}>Sign out</div>
+            </div>
         </div>
     );
 };

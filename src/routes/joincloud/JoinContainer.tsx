@@ -17,6 +17,7 @@ interface IReduxProps {
     loginError?: number;
     isLoggedIn: boolean;
     isLoadingLoggingIn: boolean;
+    hasJoined: boolean;
 
     isLoadingInvitation: boolean;
     invitation?: IInvitationDTO;
@@ -57,13 +58,17 @@ class LoginContainer extends React.Component<Props, State> {
                 joinKey: key
             };
         }else {
-            this.props.history.replace('/');
+            this.props.history.replace(`/`);
         }
     }
 
     componentWillReceiveProps(nextProps: Props) {
         if (nextProps.isLoggedIn) {
             nextProps.joinByKey(this.state.joinKey);
+        }
+
+        if (nextProps.hasJoined && this.props.invitation) {
+            this.props.history.replace(`/clouds/${this.props.invitation.cloud._id}`);
         }
     }
 
@@ -95,7 +100,8 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
         isLoadingLoggingIn: appState.login.isLoading,
         invitation: appState.invitation.invitation,
         isLoadingInvitation: appState.invitation.loading,
-        invitationError: appState.invitation.error
+        invitationError: appState.invitation.error,
+        hasJoined: appState.joinByKey.model.hasJoined
     };
 };
 
@@ -104,7 +110,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAppState>): IActionProps => {
         login: doLogin(dispatch),
         facebookLogin: doFacebookLogin(dispatch),
         fetchInvitation: doFetchInvitation(dispatch),
-        joinByKey: doJoinByKey(dispatch),
+        joinByKey: doJoinByKey(dispatch)
     };
 };
 

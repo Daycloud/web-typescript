@@ -1,5 +1,6 @@
 $primary-color: #0063A5;
 $background-color: #eeeeee;
+$navbar-height: 50px;
 
 .center-horizontal {
   display: flex;
@@ -14,6 +15,10 @@ body {
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+}
+
+.logged-in-body {
+  margin-top: $navbar-height;
 }
 
 .bg-primary {

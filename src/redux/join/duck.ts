@@ -7,13 +7,14 @@ import { IResponse, isSuccessResponse } from './../../lib/api/util/index';
 import RequestDuck from '../../lib/redux/RequestDuck';
 import { IJoinByKeyResponse, joinByKeyRequest } from '../../lib/api/invitations';
 
-interface IJoinByKeyModel {}
+interface IJoinByKeyModel {
+    hasJoined: boolean;
+}
 
 export interface IJoinByKeyState extends IStoreState<IJoinByKeyModel> {}
 
 const joinByKeyDuck = new RequestDuck<IJoinByKeyModel>('JoinByKey', {
-    isLoggedIn: false,
-    redirectUrl: undefined
+    hasJoined: false
 });
 export const JoinByKeyReducer = joinByKeyDuck.reducer;
 
@@ -23,7 +24,7 @@ export function doJoinByKey(dispatch: Dispatch<IAppState>) {
         let response: IResponse<IJoinByKeyResponse> = await joinByKeyRequest(key);
 
         if (isSuccessResponse(response.status)) {
-            dispatch(joinByKeyDuck.createSetModelAction({ isLoggedIn: true }));
+            dispatch(joinByKeyDuck.createSetModelAction({ hasJoined: true }));
         } else {
             dispatch(joinByKeyDuck.createSetErrorAction(response.status));
         }

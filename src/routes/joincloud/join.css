@@ -10,6 +10,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box; }
 
+.logged-in-body {
+  margin-top: 50px; }
+
 .bg-primary {
   background: #0063A5 !important; }
 

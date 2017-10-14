@@ -11,7 +11,7 @@ export interface IAppState {
     login: ILoginState;
     user: IUserState;
     invitation: IInvitationState;
-    join: IJoinByKeyState;
+    joinByKey: IJoinByKeyState;
     register: IRegisterState;
     clouds: ICloudsState;
 }

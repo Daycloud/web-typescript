@@ -29,7 +29,7 @@ const CloudComponent = (props: Props) => {
         <div className="cloud-list-component" onClick={() => props.history.push(`/clouds/${props.cloud._id}`)}>
             {imgSrc ? <ImageContainer url={imgSrc} /> : null}
             <div className="image-filter" />
-            <h3 className="cloud-title">{props.cloud.name}</h3>
+            <h2 className="cloud-title">{props.cloud.name}</h2>
         </div>
     );
 };

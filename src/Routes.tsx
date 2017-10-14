@@ -21,8 +21,10 @@ const Routes: React.StatelessComponent = () => (
                     <Route path="/register" component={RegisterComponent} />
                     <EnsureLoggedInContainer>
                         <NavbarContainer />
-                        <Route path="/clouds/:cloudId" component={CloudContainer} />
-                        <Route path="/" exact={true} component={Home} />
+                        <div className="logged-in-body">
+                            <Route path="/clouds/:cloudId" component={CloudContainer} />
+                            <Route path="/" exact={true} component={Home} />
+                        </div>
                     </EnsureLoggedInContainer>
                 </Switch>
             </LoginRedirector>
