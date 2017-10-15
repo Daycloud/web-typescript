@@ -18,13 +18,14 @@ interface IReduxProps {
     loginError?: number;
     isLoggedIn: boolean;
     isLoadingLoggingIn: boolean;
-    hasJoined: boolean;
 
     isLoadingInvitation: boolean;
     invitation?: IInvitationDTO;
     invitationError?: number;
 
+    hasJoined: boolean;
     isLoadingJoin: boolean;
+    joinError?: number;
 }
 
 interface IActionProps {
@@ -66,7 +67,7 @@ class LoginContainer extends React.Component<Props, State> {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        if (nextProps.isLoggedIn && !nextProps.isLoadingJoin && !nextProps.hasJoined) {
+        if (nextProps.isLoggedIn && !nextProps.isLoadingJoin && !nextProps.hasJoined && !nextProps.joinError) {
             nextProps.joinByKey(this.state.joinKey);
         }
 
@@ -109,7 +110,8 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
         isLoadingInvitation: appState.invitation.loading,
         invitationError: appState.invitation.error,
         hasJoined: appState.joinByKey.model.hasJoined,
-        isLoadingJoin: appState.joinByKey.isLoading
+        isLoadingJoin: appState.joinByKey.isLoading,
+        joinError: appState.joinByKey.errorCode
     };
 };
 
