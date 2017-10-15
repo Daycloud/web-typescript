@@ -35,3 +35,10 @@
 .nav-link-logo {
   height: 100%;
 }
+
+@media screen and (max-width: 800px){
+  .navbar {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
-
-import Button from '../../../components/button/Button';
 import { Link } from 'react-router-dom';
+
+import FacebookButton from '../../../components/login/facebookbutton/FacebookButtonComponent';
 
 interface IProps {
     joinKey: string;
@@ -12,18 +12,16 @@ const JoinActionComponent = (props: IProps) => {
     return (
 
         <div style={{width: '100%'}}>
-            <Button
-                className="m-t-m"
-                text="Continue with Facebook"
-            />
+            <FacebookButton />
             <Link
                 to={`/join/login?key=${props.joinKey}`}
                 style={{textDecoration: 'none'}}
             >
-                <Button
-                    className="m-t-m"
-                    text="Continue with email"
-                />
+                <h5
+                    className="m-t-l t-c"
+                >
+                    Continue with email
+                </h5>
             </Link>
 
         </div>

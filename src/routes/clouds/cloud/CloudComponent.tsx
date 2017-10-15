@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { ICloudDTO } from '../../../lib/api/dto/CloudDTO';
 import { ICloudImageDTO } from '../../../lib/api/dto/CloudImageDTO';
 import { apiBaseUrl } from '../../../lib/api/util/index';
+import ImageContainer from '../../../components/image/ImageContainer';
 
 import './Cloud.css';
-import ImageContainer from "../../../components/image/ImageContainer";
 
 interface IProps {
     cloud: ICloudDTO;
@@ -34,7 +35,9 @@ const CloudComponent = (props: Props) => {
             <h1>
                 {props.cloud.name}
             </h1>
-            <h4>Images: {props.cloud.cloudImages.length} | Members: {props.cloud.members.length}</h4>
+            <h4>Images: {props.cloud.cloudImages.length} |
+                <Link to={`${props.location.pathname}/guests`} >Members: {props.cloud.members.length}</Link>
+            </h4>
             <div className="gallery-container">{images}</div>
         </div>
     );

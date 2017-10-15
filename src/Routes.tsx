@@ -10,6 +10,7 @@ import JoinContainer from './routes/joincloud/JoinContainer';
 import RegisterComponent from './routes/register/RegisterComponent';
 import CloudContainer from './routes/clouds/cloud/CloudContainer';
 import NavbarContainer from './routes/navbar/NavbarContainer';
+import MemberListContainer from './routes/clouds/cloud/members/MembersContainer';
 
 const Routes: React.StatelessComponent = () => (
     <BrowserRouter basename="/">
@@ -22,7 +23,8 @@ const Routes: React.StatelessComponent = () => (
                     <EnsureLoggedInContainer>
                         <NavbarContainer />
                         <div className="logged-in-body">
-                            <Route path="/clouds/:cloudId" component={CloudContainer} />
+                            <Route path="/clouds/:cloudId" exact={true} component={CloudContainer}/>
+                            <Route path="/clouds/:cloudId/guests" component={MemberListContainer}/>
                             <Route path="/" exact={true} component={Home} />
                         </div>
                     </EnsureLoggedInContainer>

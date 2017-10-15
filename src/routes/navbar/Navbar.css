@@ -11,7 +11,7 @@ body {
   box-sizing: border-box; }
 
 .logged-in-body {
-  margin-top: 50px; }
+  margin-top: 70px; }
 
 .bg-primary {
   background: #0063A5 !important; }
@@ -32,6 +32,9 @@ body {
 .w-100 {
   width: 100%; }
 
+.error {
+  color: red; }
+
 @media screen and (max-width: 800px) {
   .w-33 {
     width: 90%; } }
@@ -40,7 +43,7 @@ body {
   top: 0;
   position: fixed;
   width: 100vw;
-  height: 50px;
+  height: 70px;
   z-index: 9999;
   display: flex;
   flex-direction: row;
@@ -62,3 +65,8 @@ body {
 
 .nav-link-logo {
   height: 100%; }
+
+@media screen and (max-width: 800px) {
+  .navbar {
+    margin-left: 0;
+    margin-right: 0; } }

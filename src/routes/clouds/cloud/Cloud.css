@@ -11,7 +11,8 @@
 .cloud-gallery-image {
   width: 18vw;
   height: 18vw;
-  position: relative; }
+  position: relative;
+  object-fit: cover; }
 
 @media screen and (max-width: 1200px) {
   .cloud-gallery-image {

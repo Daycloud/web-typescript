@@ -42,7 +42,7 @@ class CloudsContainer extends React.Component<Props, {}> {
         } else if (props.clouds) {
             return (
                 <div className="w-90 m-t-l">
-                    <h2>Clouds</h2>
+                    <h2 className="t-c">Your clouds</h2>
                     <CloudsComponent clouds={props.clouds}/>
                 </div>
             );

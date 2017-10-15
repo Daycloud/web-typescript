@@ -10,6 +10,7 @@ import { doFetchInvitation } from '../../redux/invitation/duck';
 import JoinComponent from './JoinComponent';
 import { doJoinByKey } from '../../redux/join/duck';
 import { Link } from 'react-router-dom';
+import Spinner from "../../components/spinner/Spinner";
 
 interface IOwnProps {}
 
@@ -22,6 +23,8 @@ interface IReduxProps {
     isLoadingInvitation: boolean;
     invitation?: IInvitationDTO;
     invitationError?: number;
+
+    isLoadingJoin: boolean;
 }
 
 interface IActionProps {
@@ -63,7 +66,7 @@ class LoginContainer extends React.Component<Props, State> {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        if (nextProps.isLoggedIn) {
+        if (nextProps.isLoggedIn && !nextProps.isLoadingJoin && !nextProps.hasJoined) {
             nextProps.joinByKey(this.state.joinKey);
         }
 
@@ -80,12 +83,16 @@ class LoginContainer extends React.Component<Props, State> {
                         invitation={this.props.invitation}
                         joinKey={this.state.joinKey}
                     />
-                    : <div
-                        className="w-100 t-c m-t-l center-horizontal"
-                    >
-                        Key not found
-                        <Link to="/">Home</Link>
-                    </div>
+                    : this.props.isLoadingInvitation
+                        ? <div style={{height: '100vh', display: 'flex', justifyContent: 'center'}}>
+                            <Spinner colorClassName="bg-primary" large={true}/>
+                        </div>
+                        : <div
+                            className="w-100 t-c m-t-l center-horizontal"
+                        >
+                            Key not found
+                            <Link to="/">Home</Link>
+                        </div>
                 }
             </div>
         );
@@ -101,7 +108,8 @@ const mapStateToProps = (appState: IAppState, props: Props): IReduxProps => {
         invitation: appState.invitation.invitation,
         isLoadingInvitation: appState.invitation.loading,
         invitationError: appState.invitation.error,
-        hasJoined: appState.joinByKey.model.hasJoined
+        hasJoined: appState.joinByKey.model.hasJoined,
+        isLoadingJoin: appState.joinByKey.isLoading
     };
 };
 

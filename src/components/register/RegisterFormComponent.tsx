@@ -29,7 +29,7 @@ const RegisterFormComponent = (props: Props) => {
         }
     };
     return (
-        <div className="w-100">
+        <div className="w-100 card p-l m-t-l">
                 <h1 className="t-c">Register</h1>
                 {registerError()}
                 <TextEntry

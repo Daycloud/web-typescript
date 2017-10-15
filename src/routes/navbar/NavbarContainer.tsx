@@ -4,7 +4,7 @@ import { IAppState } from '../../redux/index';
 import { connect, Dispatch } from 'react-redux';
 
 import './Navbar.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface IProps {
 }
@@ -26,7 +26,7 @@ const NavbarContainer = (props: Props) => {
             <Link to="/" className="nav-link-logo">
                 <img src={require('./daycloud_logo.png')} className="nav-logo" />
             </Link>
-            <div style={{width: '150px', justifySelf: 'right'}}>
+            <div style={{justifySelf: 'right'}}>
                 <div className="nav-logout" onClick={props.logout}>Sign out</div>
             </div>
         </div>

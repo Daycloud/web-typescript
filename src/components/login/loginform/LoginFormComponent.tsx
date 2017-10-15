@@ -31,7 +31,7 @@ class LoginFormComponent extends React.Component<Props, State> {
                 </h5>);
 
             case 422:
-                return 'Enter username and password';
+                return <div className="error t-c">Enter email and password</div>;
 
             default:
                 return undefined;

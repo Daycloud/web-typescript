@@ -1,6 +1,6 @@
 $primary-color: #0063A5;
 $background-color: #eeeeee;
-$navbar-height: 50px;
+$navbar-height: 70px;
 
 .center-horizontal {
   display: flex;
@@ -44,6 +44,10 @@ body {
 
 .w-100 {
   width: 100%;
+}
+
+.error {
+  color: red;
 }
 
 @media screen and (max-width: 800px){
